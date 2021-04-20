@@ -11,7 +11,7 @@ class Player:
         print('---------------------------------------------------------------')
 
     def choose_gesture(self):
-        user_gesture = input('Choose a number with the Gesture you want to use!: ')
-        self.gesture_list = self.gesture_list.get(user_gesture)
-        if user_gesture == 1:
-            self.gesture =
+        user_gesture = int(input('Choose a number with the Gesture you want to use!: '))
+        self.gesture = self.gesture_list.get(user_gesture)
+        print('---------------------------------------------------------------')
+        print('You chose ' + self.gesture + '!')
