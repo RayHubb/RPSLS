@@ -1,12 +1,26 @@
-from player import Player
+from human import Human
 from computer import Computer
 
+
+player1 = Human()
+player2 = Human()
+playerAI = Computer()
+playerAI.choose_gesture()
+
+
+
+# TODO create a run function
+# TODO create a welcome display with rules
+# TODO choose game mode pvp or pvAI
+# TODO select gestures
+# TODO compare the gestures
+# TODO determine a winner or rerun if it is a tie
+# TODO update score
 
 class Game:
     def __init__(self):
         self.player = ''
         self.player2 = ''
-        self.game_mode = None
 
     def welcome_display(self):
         print('------------------------------------------------------------------')
@@ -28,7 +42,12 @@ class Game:
         print('------------------------------------------------------------------')
         print('                        GOOD LUCK!                                ')
 
+    def rock(self):
+        pass
 
-player1 = Player()
-ai_player = Computer()
+
+
+
+
+
 
