@@ -1,17 +1,14 @@
 from human import Human
 from computer import Computer
+from player import Player
 
 
 player1 = Human()
 player2 = Human()
 playerAI = Computer()
-playerAI.choose_gesture()
-
 
 
 # TODO create a run function
-# TODO create a welcome display with rules
-# TODO choose game mode pvp or pvAI
 # TODO select gestures
 # TODO compare the gestures
 # TODO determine a winner or rerun if it is a tie
@@ -19,8 +16,8 @@ playerAI.choose_gesture()
 
 class Game:
     def __init__(self):
-        self.player = ''
-        self.player2 = ''
+        self.player_one = ''
+        self.player_two = ''
 
     def welcome_display(self):
         print('------------------------------------------------------------------')
@@ -42,12 +39,29 @@ class Game:
         print('------------------------------------------------------------------')
         print('                        GOOD LUCK!                                ')
 
-    def rock(self):
-        pass
-
-
-
-
-
+    def multiplayer(self):
+        print('------------------------------------------------------------------')
+        print('                     Select Game Mode                             ')
+        print('------------------------------------------------------------------')
+        game_mode = int(input('Would you like to play against me or a friend? To play against \n'
+                              'a friend type 1! To play against me press 2!: '))
+        print('------------------------------------------------------------------')
+        print('------------------------------------------------------------------')
+        if game_mode == 1:
+            self.player_one = player1
+            self.player_two = playerAI
+            print('*angry BEEP BOOP BOPS* So you have chosen to face me!')
+            print('------------------------------------------------------------------')
+        elif game_mode == 2:
+            self.player_one = player1
+            self.player_two = player2
+            print("You've chosen to play with a friend! Good choice! You have a\n"
+                  '0.00000000001% chance of defeating me!')
+            print('------------------------------------------------------------------')
+        else:
+            print('------------------------------------------------------------------')
+            print('Error! Error! Please type 1 or 2 only!! Ill ask again...')
+            print('------------------------------------------------------------------')
+            self.multiplayer()
 
 
