@@ -9,8 +9,6 @@ playerAI = Computer()
 
 # TODO create a run function
 # TODO select gestures
-# TODO determine a winner or rerun if it is a tie
-# TODO update score
 
 class Game:
     def __init__(self):
@@ -32,7 +30,8 @@ class Game:
         print('------------------------------------------------------------------')
         print('------------------------------------------------------------------')
         print('Your opponent will also choose a gesture! The winner of the round \n'
-              'will be given a point! The first player to reach 2 points wins!')
+              'will be given a point! The first player with the most wins by the \n'
+              '3rd Round wins!!')
         print('------------------------------------------------------------------')
         print('------------------------------------------------------------------')
         print('                        GOOD LUCK!                                ')
@@ -50,6 +49,7 @@ class Game:
             self.player_two = playerAI
             print('*angry BEEP BOOP BOPS* So you have chosen to face me!')
             print('------------------------------------------------------------------')
+            self.run_game1()
         elif game_mode == 2:
             self.player_one = player1
             self.player_two = player2
@@ -62,13 +62,71 @@ class Game:
             print('------------------------------------------------------------------')
             self.multiplayer()
 
-    # I want to display the gesture list, then choose gestures, run them through the comparicon checker and display results
+# I want to display the gesture list, then choose gestures, run them through the comparicon checker and display results
 
-    def run_game(self):
-        print(player1.gesture_list)
-        print(player1.choose_gesture())
-        print(playerAI.choose_gesture())
-        self.gesture_comparison_vs_ai()
+    def run_game1(self):
+        while player1.score < 2 and playerAI.score < 2:
+            print('------------------------------------------------------------------')
+            print('                          Round 1                                 ')
+            print(player1.gesture_list)
+            print(player1.choose_gesture())
+            print(playerAI.choose_gesture())
+            self.gesture_comparison_vs_ai()
+            self.show_score()
+            if player1.gesture == playerAI.gesture:
+                print(player1.gesture_list)
+                print(player1.choose_gesture())
+                print(playerAI.choose_gesture())
+                self.gesture_comparison_vs_ai()
+                self.show_score()
+            print('------------------------------------------------------------------')
+            print('                          Round 2                                 ')
+            print(player1.gesture_list)
+            print(player1.choose_gesture())
+            print(playerAI.choose_gesture())
+            self.gesture_comparison_vs_ai()
+            self.show_score()
+            if player1.gesture == playerAI.gesture:
+                print(player1.gesture_list)
+                print(player1.choose_gesture())
+                print(playerAI.choose_gesture())
+                self.gesture_comparison_vs_ai()
+                self.show_score()
+            if player1.score == 2:
+                print('------------------------------------------------------------------')
+                print('Player 1 Wins!!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                break
+            elif playerAI.score == 2:
+                print('------------------------------------------------------------------')
+                print('You lose HUMAN!! *excited BEEP BOOPs*!!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                break
+            print('------------------------------------------------------------------')
+            print('                          Round 3                                 ')
+            print(player1.gesture_list)
+            print(player1.choose_gesture())
+            print(playerAI.choose_gesture())
+            self.gesture_comparison_vs_ai()
+            self.show_score()
+            if player1.gesture == playerAI.gesture:
+                print(player1.gesture_list)
+                print(player1.choose_gesture())
+                print(playerAI.choose_gesture())
+                self.gesture_comparison_vs_ai()
+                self.show_score()
+            if player1.score == 2:
+                print('------------------------------------------------------------------')
+                print('Player 1 Wins!!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+            elif playerAI.score == 2:
+                print('------------------------------------------------------------------')
+                print('You lose HUMAN!! *excited BEEP BOOPs*!!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
 
     def gesture_comparison_vs_ai(self):
         if player1.gesture == playerAI.gesture:
@@ -79,7 +137,7 @@ class Game:
         elif player1.gesture == "Rock":
             if playerAI.gesture == "Scissors" or playerAI.gesture == 'Lizard':
                 print('------------------------------------------------------------------')
-                print(f'{player1} wins!...Does not compute!! BEEP BOP!')
+                print('Player 1 wins!...Does not compute!! BEEP BOP!')
                 print('------------------------------------------------------------------')
                 print('------------------------------------------------------------------')
                 player1.score += 1
@@ -92,7 +150,7 @@ class Game:
         elif player1.gesture == "Paper":
             if playerAI.gesture == "Rock" or playerAI.gesture == 'Spock':
                 print('------------------------------------------------------------------')
-                print(f'{player1} wins!...beginners luck if you ask me...')
+                print('Player 1 wins!...beginners luck if you ask me...')
                 print('------------------------------------------------------------------')
                 print('------------------------------------------------------------------')
                 player1.score += 1
@@ -105,7 +163,7 @@ class Game:
         elif player1.gesture == "Scissors":
             if playerAI.gesture == "Paper" or playerAI.gesture == 'Lizard':
                 print('------------------------------------------------------------------')
-                print(f'{player1} wins!....BEEP BOP!! You got lucky!')
+                print('Player1 wins!....BEEP BOP!! You got lucky!')
                 print('------------------------------------------------------------------')
                 print('------------------------------------------------------------------')
                 player1.score += 1
@@ -118,7 +176,7 @@ class Game:
         elif player1.gesture == 'Lizard':
             if playerAI.gesture == 'Spock' or playerAI.gesture == 'Paper':
                 print('------------------------------------------------------------------')
-                print(f'Must be a miscalculation... {player1} wins?!')
+                print('Must be a miscalculation... Player1 wins?!')
                 print('------------------------------------------------------------------')
                 print('------------------------------------------------------------------')
                 player1.score += 1
@@ -131,7 +189,7 @@ class Game:
         elif player1.gesture == 'Spock':
             if playerAI.gesture == 'Scissors' or playerAI.gesture == 'Rock':
                 print('------------------------------------------------------------------')
-                print(f'{player1} wins!...Wait that must be an error??...Lucky!')
+                print('Player 1 wins!...Wait that must be an error??...Lucky!')
                 print('------------------------------------------------------------------')
                 print('------------------------------------------------------------------')
                 player1.score += 1
@@ -142,4 +200,5 @@ class Game:
                 print('------------------------------------------------------------------')
                 playerAI.score += 1
 
-
+    def show_score(self):
+        print(f'The score is {player1.score} to {playerAI.score}!')
