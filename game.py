@@ -213,11 +213,10 @@ class Game:
             print(player1.choose_gesture_humans())
             print(player2.gesture_list)
             print('------------------------------------------------------------------')
-            print(player2.choose_gesture_humans())
-            self.display_human_gestures()
+            print(player2.choose_gesture_humans2())
             print('------------------------------------------------------------------')
             print('------------------------------------------------------------------')
-            self.gesture_comparison_vs_humans()
+            self.gesture_comparison_humans()
             print('------------------------------------------------------------------')
             print('------------------------------------------------------------------')
             self.show_score()
@@ -229,11 +228,11 @@ class Game:
             print(player1.choose_gesture_humans())
             print(player2.gesture_list)
             print('------------------------------------------------------------------')
-            print(player2.choose_gesture_humans())
+            print(player2.choose_gesture_humans2())
             self.display_human_gestures()
             print('------------------------------------------------------------------')
             print('------------------------------------------------------------------')
-            self.gesture_comparison_vs_humans()
+            self.gesture_comparison_humans()
             print('------------------------------------------------------------------')
             print('------------------------------------------------------------------')
             self.show_score()
@@ -258,7 +257,7 @@ class Game:
             print(player1.choose_gesture_humans())
             print(player2.gesture_list)
             print('------------------------------------------------------------------')
-            print(player2.choose_gesture_humans())
+            print(player2.choose_gesture_humans2())
             self.display_human_gestures()
             print('------------------------------------------------------------------')
             print('------------------------------------------------------------------')
@@ -282,7 +281,7 @@ class Game:
     def gesture_comparison_humans(self):
         if player1.gesture == player2.gesture:
             print('------------------------------------------------------------------')
-            print(f"You both chose {player1.gesture} so it's a tie!")
+            print(f"We both chose the same thing so it's a tie!")
             print('------------------------------------------------------------------')
             print('------------------------------------------------------------------')
         elif player1.gesture == "Rock":
@@ -297,7 +296,7 @@ class Game:
                 print("*Player 2 Wins!")
                 print('------------------------------------------------------------------')
                 print('------------------------------------------------------------------')
-                playerAI.score += 1
+                player2.score += 1
         elif player1.gesture == "Paper":
             if player2.gesture == "Rock" or player2.gesture == 'Spock':
                 print('------------------------------------------------------------------')
@@ -310,7 +309,7 @@ class Game:
                 print("Player 2 Wins!")
                 print('------------------------------------------------------------------')
                 print('------------------------------------------------------------------')
-                playerAI.score += 1
+                player2.score += 1
         elif player1.gesture == "Scissors":
             if player2.gesture == "Paper" or player2.gesture == 'Lizard':
                 print('------------------------------------------------------------------')
@@ -327,7 +326,7 @@ class Game:
         elif player1.gesture == 'Lizard':
             if player2.gesture == 'Spock' or player2.gesture == 'Paper':
                 print('------------------------------------------------------------------')
-                print('Player1 Wins!')
+                print('Player 1 Wins!')
                 print('------------------------------------------------------------------')
                 print('------------------------------------------------------------------')
                 player1.score += 1
