@@ -28,5 +28,17 @@ class Player:
         print(f'You have chosen {self.gesture}!')
         print('------------------------------------------------------------------')
 
+    def choose_gesture_humans(self):
+        user_gesture = int(input(f'Choose a number with the Gesture you want to use!: '))
+        while user_gesture > 5 or user_gesture <= 0:
+            user_gesture = int(input('Choose a number with the Gesture you want to use!: '))
+            self.gesture = self.gesture_list.get(user_gesture)
+        user_gesture2 = int(input('Hey Player 2 choose a number with the Gesture you want to use!: '))
+        while user_gesture2 > 5 or user_gesture2 < 0:
+            user_gesture2 = int(input('Choose a number with the Gesture you want to use!: '))
+            self.gesture = self.gesture_list.get(user_gesture2)
+            break
+
+
 
 

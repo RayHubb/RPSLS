@@ -7,8 +7,6 @@ player2 = Human()
 playerAI = Computer()
 
 
-# TODO create a run function
-# TODO select gestures
 
 class Game:
     def __init__(self):
@@ -41,7 +39,7 @@ class Game:
         print('                     Select Game Mode                             ')
         print('------------------------------------------------------------------')
         game_mode = int(input('Would you like to play against me or a friend? To play against \n'
-                              'a friend type 1! To play against me press 2!: '))
+                              'against me type 1! To play a friend type 2! :'))
         print('------------------------------------------------------------------')
         print('------------------------------------------------------------------')
         if game_mode == 1:
@@ -56,6 +54,7 @@ class Game:
             print("You've chosen to play with a friend! Good choice! You have a\n"
                   '0.00000000001% chance of defeating me!')
             print('------------------------------------------------------------------')
+            self.run_game2()
         else:
             print('------------------------------------------------------------------')
             print('Error! Error! Please type 1 or 2 only!! Ill ask again...')
@@ -199,6 +198,158 @@ class Game:
                 print('------------------------------------------------------------------')
                 print('------------------------------------------------------------------')
                 playerAI.score += 1
+
+# I need to make separate game methods that allow a player to play against another human user.
+    def display_human_gestures(self):
+        print('------------------------------------------------------------------')
+        print(f'Player 1 chose {player1.gesture}! and Player 2 chose {player2.gesture}!')
+
+    def run_game2(self):
+        while player1.score < 2 and player2.score < 2:
+            print('------------------------------------------------------------------')
+            print('                          Round 1                                 ')
+            print(player1.gesture_list)
+            print('------------------------------------------------------------------')
+            print(player1.choose_gesture_humans())
+            print(player2.gesture_list)
+            print('------------------------------------------------------------------')
+            print(player2.choose_gesture_humans())
+            self.display_human_gestures()
+            print('------------------------------------------------------------------')
+            print('------------------------------------------------------------------')
+            self.gesture_comparison_vs_humans()
+            print('------------------------------------------------------------------')
+            print('------------------------------------------------------------------')
+            self.show_score()
+            if player1.gesture == player2.gesture:
+                continue
+            print('                          Round 2                                 ')
+            print(player1.gesture_list)
+            print('------------------------------------------------------------------')
+            print(player1.choose_gesture_humans())
+            print(player2.gesture_list)
+            print('------------------------------------------------------------------')
+            print(player2.choose_gesture_humans())
+            self.display_human_gestures()
+            print('------------------------------------------------------------------')
+            print('------------------------------------------------------------------')
+            self.gesture_comparison_vs_humans()
+            print('------------------------------------------------------------------')
+            print('------------------------------------------------------------------')
+            self.show_score()
+            if player1.gesture == player2.gesture:
+                continue
+            if player1.score == 2:
+                print('------------------------------------------------------------------')
+                print('Player 1 Wins!!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                break
+            elif player2.score == 2:
+                print('------------------------------------------------------------------')
+                print('Player 1 Wins!!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                break
+            print('------------------------------------------------------------------')
+            print('                          Round 3                                 ')
+            print(player1.gesture_list)
+            print('------------------------------------------------------------------')
+            print(player1.choose_gesture_humans())
+            print(player2.gesture_list)
+            print('------------------------------------------------------------------')
+            print(player2.choose_gesture_humans())
+            self.display_human_gestures()
+            print('------------------------------------------------------------------')
+            print('------------------------------------------------------------------')
+            self.gesture_comparison_vs_humans()
+            print('------------------------------------------------------------------')
+            print('------------------------------------------------------------------')
+            self.show_score()
+            if player1.gesture == player2.gesture:
+                continue
+        if player1.score == 2:
+            print('------------------------------------------------------------------')
+            print('PLAYER 1 WINS!!')
+            print('------------------------------------------------------------------')
+            print('------------------------------------------------------------------')
+        elif player2.score == 2:
+            print('------------------------------------------------------------------')
+            print('PLAYER 2 WINS!!')
+            print('------------------------------------------------------------------')
+            print('------------------------------------------------------------------')
+
+    def gesture_comparison_humans(self):
+        if player1.gesture == player2.gesture:
+            print('------------------------------------------------------------------')
+            print(f"You both chose {player1.gesture} so it's a tie!")
+            print('------------------------------------------------------------------')
+            print('------------------------------------------------------------------')
+        elif player1.gesture == "Rock":
+            if player2.gesture == "Scissors" or player2.gesture == 'Lizard':
+                print('------------------------------------------------------------------')
+                print('Player 1 wins!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                player1.score += 1
+            elif player2.gesture == 'Paper' or player2.gesture == 'Spock':
+                print('------------------------------------------------------------------')
+                print("*Player 2 Wins!")
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                playerAI.score += 1
+        elif player1.gesture == "Paper":
+            if player2.gesture == "Rock" or player2.gesture == 'Spock':
+                print('------------------------------------------------------------------')
+                print('Player 1 Wins!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                player1.score += 1
+            elif player2.gesture == 'Scissors' or player2.gesture == 'Lizard':
+                print('------------------------------------------------------------------')
+                print("Player 2 Wins!")
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                playerAI.score += 1
+        elif player1.gesture == "Scissors":
+            if player2.gesture == "Paper" or player2.gesture == 'Lizard':
+                print('------------------------------------------------------------------')
+                print('Player 1 Wins!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                player1.score += 1
+            elif player2.gesture == 'Rock' or player2.gesture == 'Spock':
+                print('------------------------------------------------------------------')
+                print("Player 2 Wins!")
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                player2.score += 1
+        elif player1.gesture == 'Lizard':
+            if player2.gesture == 'Spock' or player2.gesture == 'Paper':
+                print('------------------------------------------------------------------')
+                print('Player1 Wins!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                player1.score += 1
+            elif player2.gesture == 'Scissors' or player2.gesture == 'Rock':
+                print('------------------------------------------------------------------')
+                print('Player 2 Wins!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                player2.score += 1
+        elif player1.gesture == 'Spock':
+            if player2.gesture == 'Scissors' or player2.gesture == 'Rock':
+                print('------------------------------------------------------------------')
+                print('Player 1 wins!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                player1.score += 1
+            elif player2.gesture == 'Lizard' or player2.gesture == 'Paper':
+                print('------------------------------------------------------------------')
+                print('Player 2!')
+                print('------------------------------------------------------------------')
+                print('------------------------------------------------------------------')
+                player2.score += 1
 
     def show_score(self):
         print(f'The score is {player1.score} to {playerAI.score}!')
